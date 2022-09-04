@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #3f3a5b;
+        }
+
+        #taskBoxWrapper {
+            display: flex;
+            background-color: rgba(0, 0, 0, .5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            z-index: 1;
+        }
+
+        button {
+            cursor: pointer;
+            
+            border: 0;
+            color: #000;
+            background: #fa4b6b8c;
+            padding: 18px 32px;
+            border-radius: 6px;
+            box-shadow: 0 6px #ff0030;
+            transition: .3s;
+            font: 600 22px sans-serif;
+        }
+        button:active{
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #ff0030;
+        }
+
+        #newTaskBox {
+            display: flex;
+            font-family: Arial;
+            flex-direction: column;
+            align-items: center;
+            width: 45vw;
+            margin: 5% auto;
+            background-color: #fff;
+            padding: 20px;
+            position: relative;
+            border-radius: 8px;
+            height: 75vh;
+
+            gap: 15px;
+
+        }
+
+        #updateTaskBoxWrapper {
+            display: flex;
+            background-color: rgba(0, 0, 0, .5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            z-index: 1;
+
+        }
+
+        #updateTaskBox {
+            display: flex;
+            font-family: Arial;
+            flex-direction: column;
+            align-items: center;
+            width: 45vw;
+            margin: 5% auto;
+            background-color: #fff;
+            padding: 20px;
+            position: relative;
+            border-radius: 8px;
+            height: 75vh;
+
+            gap: 15px;
+
+        }
+
+        #close {
+            font-size: 2rem;
+            position: absolute;
+            color: #000;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        #closeUpdate {
+            font-size: 2rem;
+            position: absolute;
+            color: #000;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        table{
+            font-size: 1rem;
+        }
+
+        tr {
+            display: flex;
+            align-items: stretch;
+            max-width: 80vw;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+
+        }
+
+        td {
+            border: 1px solid rgba(219, 119, 119, 0.595);
+            display: flex;flex-wrap: wrap;
+            flex: 1;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            
+        }
+        .box {
+        position: relative;
+        width: 80vw;
+        
+        color: #fff;
+        background: #151320;
+        font: 700 1rem 'Montserrat';
+       
+        
+        text-transform: uppercase;
+        border-radius: 3px;
+        }
+        .box::before,
+        .box::after {
+             content: '';
+             z-index: -1;
+             position: absolute;
+             width: calc(100% + 25px);
+             height: calc(100% + 25px);
+             top: -15px;
+             left: -15px;
+             border-radius: 8px;
+             background: linear-gradient(45deg,
+             #ffff00, #00ff00, #0099ff, #001aff, #a200ff, #ff0055, #ff0000,
+             #ff0055, #ff0000, #ffff00, #00ff00, #0099ff, #001aff, #a200ff
+             );
+             background-size: 300%;
+             animation: border 12s linear infinite;
+             }
+
+             .box::after {
+             filter: blur(50px);
+             }
+
+             @keyframes border {
+             0%, 100% {
+             background-position: 0 0;
+             }
+
+             50% {
+             background-position: 300%;
+             }
+             
+        }
+    </style>
+</head>
+
+<body>
+    <div class="addTask"><button type='button' class="btn" id="taskOpener">Add Task</button></div><br><br>
+    <div id="taskBoxWrapper">
+        <div id="newTaskBox">
+            <h1>New Task </h1>
+            <div id="close">X</div>
+            <label for="name">Task Name<input type="text" id="add-task-name"></label><br>
+            <label for="description">Task Description<input type="text" id="add-task-description"></label><br><label
+                for="">Task End Date<input type="date" name="" id="add-task-endDate"></label><br><button
+                id="add-task-button" >Add New Task</button>
+
+        </div>
+    </div>
+
+    <div id="updateTaskBoxWrapper">
+        <div id="updateTaskBox">
+
+            <h1>Update Task </h1>
+            <div id="closeUpdate" onClick=closeUpdateBtn()>X</div>
+            <label for="name">Task Name<input type="text" id="update-task-name"></label><br>
+            <label for="description">Task Description<input type="text" id="update-task-description"></label><br><label
+                for="">Task End Date<input type="date" name="" id="update-task-endDate">
+                <div id="updateBtnArea"></div>
+
+        </div>
+    </div>
+
+    <table class="box" id="taskList">
+
+    </table>
+    <script src="/app.js">
+
+    </script>
+</body>
+
+</html>
