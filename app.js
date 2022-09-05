@@ -23,18 +23,13 @@ class Task {
         else return "Completed";
     }
     overdue() {
-        if (new Date(this.endDate).getTime() < new Date().getTime()) {
-            return "style= 'color:red'"
-        }
-        if (this.status == true) {
-            return "style= 'color:green'"
-        }
+        if (new Date(this.endDate).getTime() < new Date().getTime())
+            return "style= 'color:red'";
+        if (this.status == true)
+            return "style= 'color:green'";
     }
 }
-
-const tasks = [
-
-]
+const tasks = [];
 
 function createTask() {
     const taskAddName = document.getElementById('add-task-name').value;
@@ -45,7 +40,7 @@ function createTask() {
         taskAddDescription,
         taskAddEndDate
     )
-    if (/\d/.test(taskAddName) == true){
+    if (/\d/.test(taskAddName) == true) {
         return alert("Name cannot contain numbers")
     }
     if (tasks.some(t => t.name == taskAddName)) {
@@ -67,26 +62,22 @@ function createTask() {
 
     }
     handleTasks(tasks)
-};
+}
 
-const a = window.localStorage.getItem('tasks');
-console.log(a);
 function handleTasks(data) {
     const container = document.getElementById('taskList');
     let html = '';
     data.forEach(t => {
-        
-        window.localStorage.setItem(t.getName(),JSON.stringify(t));
-            html += `<tr ${t.overdue()} style="display:flex">
-        <td> <h2 > ${t.getName()} </h2></td>
-        <td><p> ${t.getDesciption()} </p></td>
+        html += `
+        <tr ${t.overdue()} style="display:flex">
+        <td><h2>${t.getName()}</h2></td>
+        <td><p>${t.getDesciption()}</p></td>
         <td><h3>${t.getEndDate()}</h3></td>
-        <td> ${t.getStatus()}</td></tr><tr><td><button onClick=deleteTask(${t.getId()})>Delete</button></td><td><button onClick=completeTask(${t.getId()})>Complete</button></td>
+        <td>${t.getStatus()}</td></tr>
+        <tr><td><button onClick=deleteTask(${t.getId()})>Delete</button></td>
+        <td><button onClick=completeTask(${t.getId()})>Complete</button></td>
         <td><button id="updateBoxOpener" onClick=openUpdateTask(${t.getId()})>Update</button></td></tr>`;
-
-        }
-
-    )
+    })
     container.innerHTML = html;
 }
 
@@ -148,44 +139,34 @@ function completeTask(id) {
         handleTasks(tasks)
     }
 }
-
 document.getElementById('add-task-button').addEventListener('click', createTask);
-
 handleTasks(tasks);
 const openButton = document.getElementById('taskOpener');
 const taskBox = document.getElementById('taskBoxWrapper');
-
-
 openButton.addEventListener('click', () => {
     taskBox.style.display = 'block';
-
 });
 document.getElementById('close').addEventListener('click', () => {
     taskBox.style.display = "none";
 })
-function selectTask(){
+
+function selectTask() {
     const taskSelector = document.getElementById('taskSelector').value;
 
-    if (taskSelector == 'All'){
+    if (taskSelector == 'All') {
         handleTasks(tasks);
     }
-    if (taskSelector == 'Completed'){
-        const completedTasks = tasks.filter((t)=> {
+    if (taskSelector == 'Completed') {
+        const completedTasks = tasks.filter((t) => {
             return t.status == true;
         })
         handleTasks(completedTasks)
     }
-    if (taskSelector == 'Uncompleted'){
+    if (taskSelector == 'Uncompleted') {
         const uncompletedTasks = tasks.filter((t) => {
             return t.status == false;
         })
         handleTasks(uncompletedTasks)
     }
 }
-
-
-/* console.log(
-tasks.push(JSON.parse(localStorage.getItem("tasks")) || []));
-console.log(tasks); */
 selectTask()
- 
