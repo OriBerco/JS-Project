@@ -25,7 +25,7 @@
             height: 100vh;
             display: none;
             z-index: 1;
-            
+
         }
 
         button {
@@ -40,7 +40,8 @@
             transition: .3s;
             font: 600 22px sans-serif;
         }
-        td>button{
+
+        td>button {
             width: 100%;
         }
 
@@ -63,8 +64,8 @@
             height: 75vh;
             gap: 15px;
             font-size: 1.5em;
-            
-            
+
+
 
         }
 
@@ -78,7 +79,7 @@
             height: 100vh;
             display: none;
             z-index: 1;
-            
+
 
         }
 
@@ -128,24 +129,28 @@
             padding: 0;
             flex-wrap: wrap;
         }
-        #headline{
+
+        #headline {
             cursor: pointer;
             color: #b09090;
             font: 800 4rem sans-serif;
             transition: 1s;
         }
-        #headline:hover{
+
+        #headline:hover {
             color: #fff;
             text-shadow: 0 0 5px #03e9f4,
-            0 0 25px #03e9f4,0 0 50px #1dd2db,0 0 100px #206367;
+                0 0 25px #03e9f4, 0 0 50px #1dd2db, 0 0 100px #206367;
         }
-thead>tr>td{
-    color: #fff;
-    text-shadow: 0 0 5px #03e9f4,
-    0 0 25px #03e9f4,0 0 50px #1dd2db,0 0 100px #206367;
-    padding: 0px;
-    text-align: center;
-}
+
+        thead>tr>td {
+            color: #fff;
+            text-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4, 0 0 50px #1dd2db, 0 0 100px #206367;
+            padding: 0px;
+            text-align: center;
+        }
+
         td {
             border: 1px solid rgba(219, 119, 119, 0.595);
             display: flex;
@@ -215,9 +220,8 @@ thead>tr>td{
             <div id="close">X</div>
             <label for="name">Task Name &nbsp<input type="text" id="add-task-name"></label><br>
             <label for="description">Task Description &nbsp<input type="text"
-                    id="add-task-description"></label><br><label
-                for="">Task End Date &nbsp<input type="date" name="" id="add-task-endDate"></label><br><button
-                id="add-task-button">Add New Task</button>
+                    id="add-task-description"></label><br><label for="">Task End Date &nbsp<input type="date" name=""
+                    id="add-task-endDate"></label><br><button id="add-task-button">Add New Task</button>
 
         </div>
     </div>
@@ -241,18 +245,18 @@ thead>tr>td{
                 <td>
                     <h2>Task Name</h2>
                 </td>
-    <td>
-        <h2>Description</h2>
-    </td>
-    <td>
-        <h2>End Date</h2>
-    </td>
-    <td>
-        <h2>Status</h2>
-    </td>
-    </tr>
-    </thead>
-    <tbody id="taskList"></tbody>
+                <td>
+                    <h2>Description</h2>
+                </td>
+                <td>
+                    <h2>End Date</h2>
+                </td>
+                <td>
+                    <h2>Status</h2>
+                </td>
+            </tr>
+        </thead>
+        <tbody id="taskList"></tbody>
 
     </table>
     <script src="/app.js">

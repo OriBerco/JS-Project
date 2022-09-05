@@ -75,8 +75,8 @@ function handleTasks(data) {
     const container = document.getElementById('taskList');
     let html = '';
     data.forEach(t => {
-
-        window.localStorage.setItem('tasks',JSON.stringify(t));
+        
+        window.localStorage.setItem(t.getName(),JSON.stringify(t));
             html += `<tr ${t.overdue()} style="display:flex">
         <td> <h2 > ${t.getName()} </h2></td>
         <td><p> ${t.getDesciption()} </p></td>
