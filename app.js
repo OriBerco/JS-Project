@@ -76,7 +76,7 @@ function handleTasks(data) {
         <td>${t.getStatus()}</td></tr>
         <tr><td><button onClick=deleteTask(${t.getId()})>Delete</button></td>
         <td><button onClick=completeTask(${t.getId()})>Complete</button></td>
-        <td><button id="updateBoxOpener" onClick=openUpdateTask(${t.getId()})>Update</button></td></tr>`;
+        <td><button id="updateBoxOpener" onClick=openUpdateTask(${t.getId()})>Edit</button></td></tr>`;
     })
     container.innerHTML = html;
 }
