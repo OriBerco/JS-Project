@@ -23,18 +23,13 @@ class Task {
         else return "Completed";
     }
     overdue() {
-        if (new Date(this.endDate).getTime() < new Date().getTime()) {
-            return "style= 'color:red'"
-        }
-        if (this.status == true) {
-            return "style= 'color:green'"
-        }
+        if (new Date(this.endDate).getTime() < new Date().getTime())
+            return "style= 'color:red'";
+        if (this.status == true)
+            return "style= 'color:green'";
     }
 }
-
-const tasks = [
-
-]
+const tasks = [];
 
 function createTask() {
     const taskAddName = document.getElementById('add-task-name').value;
@@ -45,6 +40,9 @@ function createTask() {
         taskAddDescription,
         taskAddEndDate
     )
+    if (/\d/.test(taskAddName) == true) {
+        return alert("Name cannot contain numbers")
+    }
     if (tasks.some(t => t.name == taskAddName)) {
         return alert("Task already exists")
     }
@@ -64,22 +62,22 @@ function createTask() {
 
     }
     handleTasks(tasks)
-};
+}
 
 function handleTasks(data) {
     const container = document.getElementById('taskList');
     let html = '';
     data.forEach(t => {
-            html += `<tr ${t.overdue()} style="display:flex">
-        <td> <h2 > ${t.getName()} </h2></td>
-        <td><p> ${t.getDesciption()} </p></td>
-        <td><h3>expires:${t.getEndDate()}</h3></td>
-        <td> ${t.getStatus()}</td></tr><tr><td><button onClick=deleteTask(${t.getId()})>Delete</button></td><td><button onClick=completeTask(${t.getId()})>Complete</button></td>
-        <td><button id="updateBoxOpener" onClick=openUpdateTask(${t.getId()})>Update</button></td></tr>`;
-
-        }
-
-    )
+        html += `
+        <tr ${t.overdue()} style="display:flex">
+        <td><h2>${t.getName()}</h2></td>
+        <td><p>${t.getDesciption()}</p></td>
+        <td><h3>${t.getEndDate()}</h3></td>
+        <td>${t.getStatus()}</td></tr>
+        <tr><td><button onClick=deleteTask(${t.getId()})>Delete</button></td>
+        <td><button onClick=completeTask(${t.getId()})>Complete</button></td>
+        <td><button id="updateBoxOpener" onClick=openUpdateTask(${t.getId()})>Edit</button></td></tr>`;
+    })
     container.innerHTML = html;
 }
 
@@ -141,24 +139,34 @@ function completeTask(id) {
         handleTasks(tasks)
     }
 }
-
 document.getElementById('add-task-button').addEventListener('click', createTask);
-
 handleTasks(tasks);
 const openButton = document.getElementById('taskOpener');
 const taskBox = document.getElementById('taskBoxWrapper');
-
-
 openButton.addEventListener('click', () => {
     taskBox.style.display = 'block';
-
 });
 document.getElementById('close').addEventListener('click', () => {
     taskBox.style.display = "none";
 })
 
+function selectTask() {
+    const taskSelector = document.getElementById('taskSelector').value;
 
-
-/* console.log(
-tasks.push(JSON.parse(localStorage.getItem("tasks")) || []));
-console.log(tasks); */
+    if (taskSelector == 'All') {
+        handleTasks(tasks);
+    }
+    if (taskSelector == 'Completed') {
+        const completedTasks = tasks.filter((t) => {
+            return t.status == true;
+        })
+        handleTasks(completedTasks)
+    }
+    if (taskSelector == 'Uncompleted') {
+        const uncompletedTasks = tasks.filter((t) => {
+            return t.status == false;
+        })
+        handleTasks(uncompletedTasks)
+    }
+}
+selectTask()
